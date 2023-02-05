@@ -34,22 +34,22 @@ FROM NhanVien <br>
 WHERE QueQuan LIKE '%Thai Binh%' AND YEAR(NgaySinh) > 1990; <br>
 
 B <br
-SELECT MaNhanVien, HoVaTen, NgaySinh <br
+SELECT MaNhanVien, HoVaTen, NgaySinh <br>
 FROM NhanVien <br
-WHERE NgaySinh IN (SELECT NgaySinh FROM NhanVien GROUP BY NgaySinh HAVING COUNT(NhanVienID) > 1) <br
+WHERE NgaySinh IN (SELECT NgaySinh FROM NhanVien GROUP BY NgaySinh HAVING COUNT(NhanVienID) > 1) <br>
 
-4/ <br
-SELECT NhanVien.NhanVienID, HoVaTen, ns_dsloaihopdong.TenLoaiHopDong, NgayBatDau, NgayKetThuc <br
+4/ <br>
+SELECT NhanVien.NhanVienID, HoVaTen, ns_dsloaihopdong.TenLoaiHopDong, NgayBatDau, NgayKetThuc <br>
 FROM NhanVien  <br
-JOIN (SELECT NhanVienID, MAX(NgayKyHD) AS MaxNgayKyHD <br
-      FROM ns_hopdong <br
-      GROUP BY NhanVienID) AS HD  <br
-ON NhanVien.NhanVienID = HD.NhanVienID  <br
+JOIN (SELECT NhanVienID, MAX(NgayKyHD) AS MaxNgayKyHD <br>
+      FROM ns_hopdong <br>
+      GROUP BY NhanVienID) AS HD  <br>
+ON NhanVien.NhanVienID = HD.NhanVienID  <br>
 JOIN ns_hopdong  <br
-ON NhanVien.NhanVienID = ns_hopdong.NhanVienID  <br
-AND HD.MaxNgayKyHD = ns_hopdong.NgayKyHD  <br
+ON NhanVien.NhanVienID = ns_hopdong.NhanVienID  <br>
+AND HD.MaxNgayKyHD = ns_hopdong.NgayKyHD  <br>
 JOIN ns_dsloaihopdong  <br
-ON ns_hopdong.LoaiHopDongID = ns_dsloaihopdong.LoaiHopDongID  <br
+ON ns_hopdong.LoaiHopDongID = ns_dsloaihopdong.LoaiHopDongID <br>
 LIMIT 0, 1000 <br>
 
 5/ <br>
