@@ -33,7 +33,7 @@ SELECT MaNhanVien, HoVaTen, NgaySinh, QueQuan <br>
 FROM NhanVien <br>
 WHERE QueQuan LIKE '%Thai Binh%' AND YEAR(NgaySinh) > 1990; <br>
 
-B <br
+B <br>
 SELECT MaNhanVien, HoVaTen, NgaySinh <br>
 FROM NhanVien <br
 WHERE NgaySinh IN (SELECT NgaySinh FROM NhanVien GROUP BY NgaySinh HAVING COUNT(NhanVienID) > 1) <br>
